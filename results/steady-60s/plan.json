@@ -1,0 +1,185 @@
+{
+  "seconds": 60,
+  "warmup_seconds": 10,
+  "window_seconds": 10,
+  "pilot_seconds": 5,
+  "schedulers": 10,
+  "workers": 40,
+  "repeats": 3,
+  "server_deployment": "native",
+  "source_sha256": {
+    "mix.lock": "5fdfe6e56f4a9395d77d896522c38d3d8f6001a0f89bab703d4bb625142a0860",
+    "lib/bench.ex": "865e1ddf32098e5cb4103bfd127b7309a1d9dfb41b476b6c2bd4f4f6297db60f",
+    "lib/sql_client.ex": "11a7c766777c5f75da831cbbe387aec73fe9d59e2f7c988379a6e55834f44461"
+  },
+  "jobs": [
+    {
+      "sequence": 1,
+      "phase": "pilot",
+      "mode": "postgrex_held",
+      "repeat": 0
+    },
+    {
+      "sequence": 2,
+      "phase": "pilot",
+      "mode": "sql",
+      "repeat": 0
+    },
+    {
+      "sequence": 3,
+      "phase": "pilot",
+      "mode": "no_io",
+      "repeat": 0
+    },
+    {
+      "sequence": 4,
+      "phase": "pilot",
+      "mode": "ecto",
+      "repeat": 0
+    },
+    {
+      "sequence": 5,
+      "phase": "pilot",
+      "mode": "epgsql_batch",
+      "repeat": 0
+    },
+    {
+      "sequence": 6,
+      "phase": "pilot",
+      "mode": "postgrex",
+      "repeat": 0
+    },
+    {
+      "sequence": 7,
+      "phase": "pilot",
+      "mode": "epgsql",
+      "repeat": 0
+    },
+    {
+      "sequence": 8,
+      "phase": "measurement",
+      "mode": "no_io",
+      "repeat": 1
+    },
+    {
+      "sequence": 9,
+      "phase": "measurement",
+      "mode": "sql",
+      "repeat": 3
+    },
+    {
+      "sequence": 10,
+      "phase": "measurement",
+      "mode": "epgsql",
+      "repeat": 2
+    },
+    {
+      "sequence": 11,
+      "phase": "measurement",
+      "mode": "postgrex",
+      "repeat": 2
+    },
+    {
+      "sequence": 12,
+      "phase": "measurement",
+      "mode": "postgrex",
+      "repeat": 3
+    },
+    {
+      "sequence": 13,
+      "phase": "measurement",
+      "mode": "ecto",
+      "repeat": 2
+    },
+    {
+      "sequence": 14,
+      "phase": "measurement",
+      "mode": "no_io",
+      "repeat": 2
+    },
+    {
+      "sequence": 15,
+      "phase": "measurement",
+      "mode": "epgsql_batch",
+      "repeat": 1
+    },
+    {
+      "sequence": 16,
+      "phase": "measurement",
+      "mode": "epgsql",
+      "repeat": 1
+    },
+    {
+      "sequence": 17,
+      "phase": "measurement",
+      "mode": "epgsql_batch",
+      "repeat": 3
+    },
+    {
+      "sequence": 18,
+      "phase": "measurement",
+      "mode": "ecto",
+      "repeat": 1
+    },
+    {
+      "sequence": 19,
+      "phase": "measurement",
+      "mode": "sql",
+      "repeat": 2
+    },
+    {
+      "sequence": 20,
+      "phase": "measurement",
+      "mode": "epgsql",
+      "repeat": 3
+    },
+    {
+      "sequence": 21,
+      "phase": "measurement",
+      "mode": "ecto",
+      "repeat": 3
+    },
+    {
+      "sequence": 22,
+      "phase": "measurement",
+      "mode": "postgrex",
+      "repeat": 1
+    },
+    {
+      "sequence": 23,
+      "phase": "measurement",
+      "mode": "postgrex_held",
+      "repeat": 3
+    },
+    {
+      "sequence": 24,
+      "phase": "measurement",
+      "mode": "postgrex_held",
+      "repeat": 1
+    },
+    {
+      "sequence": 25,
+      "phase": "measurement",
+      "mode": "no_io",
+      "repeat": 3
+    },
+    {
+      "sequence": 26,
+      "phase": "measurement",
+      "mode": "sql",
+      "repeat": 1
+    },
+    {
+      "sequence": 27,
+      "phase": "measurement",
+      "mode": "postgrex_held",
+      "repeat": 2
+    },
+    {
+      "sequence": 28,
+      "phase": "measurement",
+      "mode": "epgsql_batch",
+      "repeat": 2
+    }
+  ]
+}

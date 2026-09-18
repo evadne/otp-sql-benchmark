@@ -1,0 +1,20 @@
+{
+  "server_deployment": "native",
+  "zero_transaction_control": {
+    "api_transactions": 0,
+    "begins": 1,
+    "commits": 1,
+    "server_errors": [],
+    "server_log": "count-audit-0-postgres.log.gz",
+    "client_log": "\n17:15:14.426 [notice] Application sql exited: :stopped\nCOUNT_AUDIT sql 0\n\n17:15:14.548 [notice] Application sql exited: :stopped\n"
+  },
+  "measured": {
+    "api_transactions": 10000,
+    "begins": 10001,
+    "commits": 10001,
+    "server_errors": [],
+    "server_log": "count-audit-1000-postgres.log.gz",
+    "client_log": "\n17:15:15.257 [notice] Application sql exited: :stopped\nCOUNT_AUDIT sql 10000\n\n17:15:15.641 [notice] Application sql exited: :stopped\n"
+  },
+  "net_server_commits": 10000
+}

@@ -1,0 +1,29 @@
+{
+  "validated_at_utc": "2026-09-18T17:18:12.924710+00:00",
+  "harness_commit": "9b5bf83",
+  "successful_pilots": 7,
+  "successful_minute_trials": 21,
+  "failed_attempts": 0,
+  "database_trials": 18,
+  "no_io_control_trials": 3,
+  "database_mode_transactions": 221481544,
+  "all_measured_transactions": 292662859,
+  "min_measured_seconds": 60.000126718,
+  "max_measured_seconds": 60.900116301,
+  "warmup_seconds": 10,
+  "window_seconds": 10,
+  "historical_evidence_files_unchanged": 270,
+  "checks": [
+    "Remote warnings-as-errors compilation and formatter passed",
+    "Two ExUnit boundary/overrun tests passed; all seven API checks passed",
+    "Two-window no-I/O smoke passed (743467 transactions); excluded from minute trials",
+    "Runner rejects a 59-second sustained profile",
+    "All 28 planned attempts retained; all 21 measured durations >=60 seconds",
+    "Summariser reconciles every per-window/per-worker count and verifies baseline runtime/affinity/dependency metadata",
+    "Pilot estimates verified as ceil(pilot TPS * duration); never used as stopping conditions",
+    "Current source hashes match run manifest; original transaction loop and dependency pins unchanged",
+    "Bounded commit audit independently recounted from compressed server logs",
+    "Response gate preserves expected completion semantics",
+    "Server log has no ERROR/FATAL/PANIC entries; clean shutdown logged"
+  ]
+}

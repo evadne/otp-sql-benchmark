@@ -3,7 +3,8 @@
 Reproduce a 190,000 transactions/s question with explicit completion semantics.
 The 10,000-transaction server-log audit is a separate correctness check, not
 the throughput workload. Performance trials stop by elapsed time, not count.
-See [REPORT.md](REPORT.md) for measured results and the
+See [REPORT.md](REPORT.md) for measured results, the
+[sustained minute-long summary](results/steady-60s/summary.md), and the historical
 [native-versus-Docker comparison](results/native-comparison.md). Dependencies are pinned in `mix.lock`.
 The default PostgreSQL setup is native; Docker is optional historical reproduction only.
 

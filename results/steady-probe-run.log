@@ -1,0 +1,4 @@
+{"mode": "sql", "gate_seconds": 2, "returned_while_responses_blocked": true, "server_bytes_forwarded_while_blocked": 0, "return_microseconds": 33, "log": ["", "17:15:03.108 [notice] Application sql exited: :stopped", "PROBE_READY", "PROBE_RETURNED 33", "PROBE_DRAINED"]}
+{"mode": "postgrex", "gate_seconds": 2, "returned_while_responses_blocked": false, "server_bytes_forwarded_while_blocked": 0, "return_microseconds": 2001236, "log": ["PROBE_READY", "PROBE_RETURNED 2001236", "PROBE_DRAINED"]}
+{"mode": "ecto", "gate_seconds": 2, "returned_while_responses_blocked": false, "server_bytes_forwarded_while_blocked": 0, "return_microseconds": 2001269, "log": ["PROBE_READY", "PROBE_RETURNED 2001269", "PROBE_DRAINED"]}
+{"mode": "epgsql", "gate_seconds": 2, "returned_while_responses_blocked": false, "server_bytes_forwarded_while_blocked": 0, "return_microseconds": 2003142, "log": ["PROBE_READY", "PROBE_RETURNED 2003142", "PROBE_DRAINED"]}
