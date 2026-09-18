@@ -1,6 +1,6 @@
 # BEAM empty transaction results — 18 September 2026
 
-**Yes: epgsql exceeded 190K server-acknowledged empty transactions/s with ten
+**epgsql exceeded 190K server-acknowledged empty transactions/s with ten
 BEAM schedulers.** Sending `BEGIN; COMMIT` as one simple-query request achieved
 **261,492/s median** across three runs (259,508–262,926/s), using 40 callers and
 40 connections. The client waits for the response. This is a specialised empty
