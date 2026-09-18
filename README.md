@@ -2,6 +2,7 @@
 
 Reproduce a 190,000 transactions/s question with explicit completion semantics.
 See `REPORT.md` for measured results. Dependencies are pinned in `mix.lock`.
+The default PostgreSQL setup is native; Docker is optional historical reproduction only.
 
 ## Workloads
 
@@ -52,17 +53,31 @@ an ordering fence, but does not retroactively provide per-transaction error hand
 
 ## Reproduce
 
-Use Linux, Docker, Python 3.9+, Elixir 1.19.5 and OTP 28.3.2. On codex-test-2:
+Use Debian 13 Linux, Python 3.9+, Elixir 1.19.5 and OTP 28.3.2.
+Install native PostgreSQL once as root; the script installs the exact 16.15 package
+used in the first run, following the [official PostgreSQL Debian instructions](https://www.postgresql.org/download/linux/debian/).
+It temporarily disables automatic default-cluster creation and restores that policy.
+No existing cluster is modified.
+
+```sh
+sudo bash scripts/install-postgres-native.sh
+```
+
+On codex-test-2, the benchmark commands below run as root. The native server
+itself runs as the `postgres` OS user; its disposable data directory is a dedicated
+2 GiB tmpfs at `/srv/beam-sql-bench-native/data`, listening only on loopback.
+The package remains installed after the benchmark server is stopped.
 
 ```sh
 export PATH=/root/.asdf/installs/elixir/1.19.5-otp-28/bin:/root/.asdf/installs/erlang/28.3.2/bin:$PATH
 export ERL_FLAGS='+S 10:10 +SDcpu 2 +SDio 2'
+export BENCH_PG_BACKEND=native
 bash scripts/postgres.sh
 mix deps.get
 mix compile --warnings-as-errors
 mix format --check-formatted
 mix run -e 'BeamSqlBench.audit()'
-bash scripts/environment.sh > results/environment.txt
+bash scripts/environment.sh > results/another-environment.txt
 python3 scripts/matrix.py another-matrix
 python3 scripts/matrix.py another-pool-sweep pool
 python3 scripts/matrix.py another-controls controls
@@ -84,13 +99,29 @@ Run the completion probe and count audit serially after performance work.
 The probe temporarily withholds every server response through a local TCP proxy;
 only `sql` is expected to return while responses are blocked.
 The count audit logs a bounded 10,000-transaction run and subtracts a zero-operation
-startup control. It waits for an independent log marker to ensure Docker has
-delivered the complete log, then requires exact BEGIN/COMMIT counts and no errors.
+startup control. It reads the native server log from an initial byte offset and
+waits for an independent log marker, then requires exact BEGIN/COMMIT counts and no errors.
 Logging is reset before returning. `bash scripts/qualify.sh RUN_NAME` performs
 the complete validation/matrix sequence in new result directories.
 
-When finished, stop/remove only the dedicated benchmark container. Its database
-is disposable; the source and raw results live outside Docker.
+When finished, stop the dedicated server and unmount its disposable data:
+
+```sh
+sudo bash scripts/postgres.sh stop
+```
+
+`BENCH_PG_BIN` and `BENCH_PG_ROOT` override the native binary/root directories.
+The latter also identifies `server.log` for the audit. Run metadata records
+`server_deployment: native`; the original Docker result files remain unchanged.
+
+### Historical Docker baseline
+
+The first experiment used PostgreSQL in Docker with host networking; the BEAM
+always ran natively inside the Incus host. To reproduce that original setup,
+stop the native benchmark server, set `BENCH_PG_BACKEND=docker`, and use
+`scripts/postgres-docker.sh` plus `scripts/environment-docker.sh` instead.
+The count audit retains Docker log support. Use new result directories and
+stop/remove only the named benchmark container afterwards.
 
 ## Primary sources
 

@@ -45,7 +45,8 @@ with (destination / "results.jsonl").open("w") as results:
         rows = [json.loads(line) for line in completed.stdout.splitlines() if line.startswith('{"')]
         if len(rows) != 1:
             raise RuntimeError(f"Expected exactly one measurement: {log}")
-        row = rows[0] | {"repeat": repeat, "sequence": index}
+        row = rows[0] | {"repeat": repeat, "sequence": index,
+                         "server_deployment": os.environ.get("BENCH_PG_BACKEND", "native")}
         results.write(json.dumps(row) + "\n")
         results.flush()
         print(f"{index}/{len(jobs)} {mode} S={schedulers} W={workers} P={pool}: "

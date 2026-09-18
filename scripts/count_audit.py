@@ -22,32 +22,47 @@ destination.mkdir(parents=True, exist_ok=True)
 if (destination / 'count-audit.json').exists():
     raise FileExistsError('Choose a new output directory to preserve the existing audit')
 container = 'beam-sql-bench-20260918-pg'
+backend = os.environ.get('BENCH_PG_BACKEND', 'native')
+if backend not in ('native', 'docker'):
+    raise ValueError('BENCH_PG_BACKEND must be native or docker')
+pg_bin = Path(os.environ.get('BENCH_PG_BIN', '/usr/lib/postgresql/16/bin'))
+pg_log = Path(os.environ.get('BENCH_PG_ROOT', '/srv/beam-sql-bench-native')) / 'server.log'
 
 def psql(query):
-    subprocess.run(['docker', 'exec', container, 'psql', '-XAt', '-p', '55432',
-                    '-U', 'postgres', '-d', 'postgres', '-c', query], check=True,
-                   stdout=subprocess.DEVNULL)
+    command = (['docker', 'exec', container, 'psql'] if backend == 'docker'
+               else [str(pg_bin / 'psql'), '-h', '127.0.0.1'])
+    subprocess.run(command + ['-XAt', '-v', 'ON_ERROR_STOP=1', '-p', os.environ.get('PGPORT', '55432'),
+                             '-U', 'postgres', '-d', 'postgres', '-c', query],
+                   check=True, stdout=subprocess.DEVNULL)
 
 def trial(count):
     since = datetime.now(timezone.utc).isoformat()
+    log_offset = pg_log.stat().st_size if backend == 'native' else None
     env = os.environ | {'BENCH_MODE': 'sql', 'WORKERS': '10', 'AUDIT_COUNT': str(count),
                         'ERL_FLAGS': '+S 10:10 +SDcpu 2 +SDio 2'}
     completed = subprocess.run(
         ['mix', 'run', '--no-compile', '--no-deps-check', '-e', 'BeamSqlBench.count_audit()'],
         cwd=root, env=env, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
         timeout=120, check=True)
-    # Docker's log collector can lag behind the completed client. Wait for an
-    # independent server-log barrier, rather than stopping at an expected count.
+    # Wait for an independent server-log barrier instead of an expected count.
+    # For the historical Docker mode this also drains the log collector.
     marker = 'BEAM_SQL_AUDIT_BARRIER_' + uuid.uuid4().hex
     psql("DO $$ BEGIN RAISE LOG '" + marker + "'; END $$")
     deadline = time.monotonic() + 10
     while True:
-        log = subprocess.check_output(['docker', 'logs', '--since', since, container],
-                                      stderr=subprocess.STDOUT)
+        if backend == 'native':
+            with pg_log.open('rb') as stream:
+                if os.fstat(stream.fileno()).st_size < log_offset:
+                    raise RuntimeError('PostgreSQL log was truncated during the audit')
+                stream.seek(log_offset)
+                log = stream.read()
+        else:
+            log = subprocess.check_output(['docker', 'logs', '--since', since, container],
+                                          stderr=subprocess.STDOUT)
         if marker.encode() in log:
             break
         if time.monotonic() > deadline:
-            raise RuntimeError('Docker did not deliver the server-log barrier')
+            raise RuntimeError('PostgreSQL log barrier was not delivered')
         time.sleep(0.1)
     path = destination / f'count-audit-{count}-postgres.log.gz'
     path.write_bytes(gzip.compress(log, mtime=0))
@@ -65,7 +80,7 @@ try:
     measured = trial(1000)
 finally:
     psql('ALTER DATABASE beam_bench RESET log_statement')
-record = {'zero_transaction_control': control, 'measured': measured,
+record = {'server_deployment': backend, 'zero_transaction_control': control, 'measured': measured,
           'net_server_commits': measured['commits'] - control['commits']}
 (destination / 'count-audit.json').write_text(json.dumps(record, indent=2) + '\n')
 print(json.dumps(record), flush=True)

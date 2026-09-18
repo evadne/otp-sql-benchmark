@@ -1,0 +1,11 @@
+AUDIT_OK postgrex 3
+AUDIT_OK postgrex_held 3
+AUDIT_OK ecto 3
+AUDIT_OK epgsql 3
+AUDIT_OK epgsql_batch 3
+AUDIT_OK no_io 3
+
+14:17:30.979 [notice] Application sql exited: :stopped
+AUDIT_OK sql 3
+
+14:17:31.093 [notice] Application sql exited: :stopped

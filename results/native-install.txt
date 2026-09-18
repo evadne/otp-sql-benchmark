@@ -1,0 +1,101 @@
+Hit:1 http://deb.debian.org/debian trixie InRelease
+Hit:2 http://deb.debian.org/debian trixie-updates InRelease
+Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+Hit:4 https://apt.postgresql.org/pub/repos/apt trixie-pgdg InRelease
+Fetched 43.4 kB in 0s (563 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libjson-perl postgresql-client-common ssl-cert
+Recommended packages:
+  libjson-xs-perl logrotate
+The following NEW packages will be installed:
+  libjson-perl postgresql-client-common postgresql-common ssl-cert
+0 upgraded, 4 newly installed, 0 to remove and 186 not upgraded.
+Need to get 266 kB of archives.
+After this operation, 834 kB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian trixie/main amd64 libjson-perl all 4.10000-1 [87.5 kB]
+Get:2 http://deb.debian.org/debian trixie/main amd64 ssl-cert all 1.1.3 [16.8 kB]
+Get:3 https://apt.postgresql.org/pub/repos/apt trixie-pgdg/main amd64 postgresql-client-common all 293.pgdg13+1 [48.5 kB]
+Get:4 https://apt.postgresql.org/pub/repos/apt trixie-pgdg/main amd64 postgresql-common all 293.pgdg13+1 [113 kB]
+Preconfiguring packages ...
+Fetched 266 kB in 0s (4491 kB/s)
+Selecting previously unselected package libjson-perl.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 65164 files and directories currently installed.)
+Preparing to unpack .../libjson-perl_4.10000-1_all.deb ...
+Unpacking libjson-perl (4.10000-1) ...
+Selecting previously unselected package postgresql-client-common.
+Preparing to unpack .../postgresql-client-common_293.pgdg13+1_all.deb ...
+Unpacking postgresql-client-common (293.pgdg13+1) ...
+Selecting previously unselected package ssl-cert.
+Preparing to unpack .../ssl-cert_1.1.3_all.deb ...
+Unpacking ssl-cert (1.1.3) ...
+Selecting previously unselected package postgresql-common.
+Preparing to unpack .../postgresql-common_293.pgdg13+1_all.deb ...
+Adding 'diversion of /usr/bin/pg_config to /usr/bin/pg_config.libpq-dev by postgresql-common'
+Unpacking postgresql-common (293.pgdg13+1) ...
+Setting up postgresql-client-common (293.pgdg13+1) ...
+Setting up ssl-cert (1.1.3) ...
+Setting up libjson-perl (4.10000-1) ...
+Setting up postgresql-common (293.pgdg13+1) ...
+Creating config file /etc/postgresql-common/createcluster.conf with new version
+Building PostgreSQL dictionaries from installed myspell/hunspell packages...
+Removing obsolete dictionary files:
+Created symlink '/etc/systemd/system/multi-user.target.wants/postgresql.service' → '/usr/lib/systemd/system/postgresql.service'.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libpq5
+Suggested packages:
+  libpq-oauth postgresql-doc-16
+Recommended packages:
+  sysstat
+The following NEW packages will be installed:
+  libpq5 postgresql-16 postgresql-client-16
+0 upgraded, 3 newly installed, 0 to remove and 186 not upgraded.
+Need to get 18.4 MB of archives.
+After this operation, 68.4 MB of additional disk space will be used.
+Get:1 https://apt.postgresql.org/pub/repos/apt trixie-pgdg/main amd64 libpq5 amd64 18.6-1.pgdg13+2 [266 kB]
+Get:2 https://apt.postgresql.org/pub/repos/apt trixie-pgdg/main amd64 postgresql-client-16 amd64 16.15-1.pgdg13+2 [1973 kB]
+Get:3 https://apt.postgresql.org/pub/repos/apt trixie-pgdg/main amd64 postgresql-16 amd64 16.15-1.pgdg13+2 [16.1 MB]
+Preconfiguring packages ...
+Fetched 18.4 MB in 2s (11.4 MB/s)
+Selecting previously unselected package libpq5:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 65293 files and directories currently installed.)
+Preparing to unpack .../libpq5_18.6-1.pgdg13+2_amd64.deb ...
+Unpacking libpq5:amd64 (18.6-1.pgdg13+2) ...
+Selecting previously unselected package postgresql-client-16.
+Preparing to unpack .../postgresql-client-16_16.15-1.pgdg13+2_amd64.deb ...
+Unpacking postgresql-client-16 (16.15-1.pgdg13+2) ...
+Selecting previously unselected package postgresql-16.
+Preparing to unpack .../postgresql-16_16.15-1.pgdg13+2_amd64.deb ...
+Unpacking postgresql-16 (16.15-1.pgdg13+2) ...
+Setting up libpq5:amd64 (18.6-1.pgdg13+2) ...
+Setting up postgresql-client-16 (16.15-1.pgdg13+2) ...
+update-alternatives: using /usr/share/postgresql/16/man/man1/psql.1.gz to provide /usr/share/man/man1/psql.1.gz (psql.1.gz) in auto mode
+Setting up postgresql-16 (16.15-1.pgdg13+2) ...
+Processing triggers for postgresql-common (293.pgdg13+1) ...
+Building PostgreSQL dictionaries from installed myspell/hunspell packages...
+Removing obsolete dictionary files:
+Processing triggers for libc-bin (2.41-12+deb13u2) ...
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+postgres (PostgreSQL) 16.15 (Debian 16.15-1.pgdg13+2)
+Ver Cluster Port Status Owner Data directory Log file
