@@ -1,0 +1,21 @@
+{
+  "validated_at_utc": "2026-09-18T14:41:56.353631+00:00",
+  "native_successful_measurements": 111,
+  "native_retained_unsuccessful_attempts": 1,
+  "unchanged_original_evidence_and_workload_files": 135,
+  "baseline_commit": "495920f52bc79b2f58a41b7179c0c8e4da8fd95d",
+  "checks": [
+    "All three native summaries validate counts, rates, worker totals and repetitions",
+    "Comparison validates 37 matched entries and runtime/dependency/affinity equality",
+    "Python scripts compile; shell scripts pass bash -n; source/document whitespace checks pass",
+    "All local links in updated documents resolve; compressed logs decode",
+    "Final environment capture has no SQL errors; clean server shutdown is logged"
+  ],
+  "full_server_log_errors": [
+    "2026-09-18 14:17:30.148 UTC [218904] ERROR:  unrecognized configuration parameter \"lc_collate\"",
+    "2026-09-18 14:26:08.194 UTC [222432] FATAL:  connection to client lost",
+    "2026-09-18 14:26:13.198 UTC [222434] FATAL:  connection to client lost",
+    "2026-09-18 14:26:18.205 UTC [222437] FATAL:  connection to client lost"
+  ],
+  "error_context": "One metadata query error from the initial environment capture, documented and corrected; three connection-loss FATAL messages during teardown of the timed-out SQL client. No additional ERROR/FATAL/PANIC entries."
+}

@@ -1,0 +1,4 @@
+waiting for server to shut down.... done
+server stopped
+postgres (PostgreSQL) 16.15 (Debian 16.15-1.pgdg13+2)
+Ver Cluster Port Status Owner Data directory Log file

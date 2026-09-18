@@ -17,3 +17,11 @@ initial commit. Historical commit identifiers in `REPORT.md` refer to the source
 checkout above. No benchmark was rerun as part of this repository creation.
 
 See [REPORT.md](REPORT.md) for findings and [README.md](README.md) for reproduction.
+
+## Subsequent native rerun
+
+After the initial snapshot, PostgreSQL was installed directly in codex-test-2
+and the matrix repeated. `results/native-*` retains this separate evidence,
+including one unsuccessful attempt and its explicit retry. The report now leads
+with the native comparison; the original Docker evidence, timed Elixir source
+and dependency pins remain byte-for-byte unchanged from the initial commit.

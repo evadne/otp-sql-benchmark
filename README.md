@@ -1,7 +1,8 @@
 # Empty SQL transactions on the BEAM
 
 Reproduce a 190,000 transactions/s question with explicit completion semantics.
-See `REPORT.md` for measured results. Dependencies are pinned in `mix.lock`.
+See [REPORT.md](REPORT.md) for measured results and the
+[native-versus-Docker comparison](results/native-comparison.md). Dependencies are pinned in `mix.lock`.
 The default PostgreSQL setup is native; Docker is optional historical reproduction only.
 
 ## Workloads

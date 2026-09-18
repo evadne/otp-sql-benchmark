@@ -1,0 +1,14 @@
+Get:1 http://deb.debian.org/debian trixie InRelease [140 kB]
+Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+Get:3 https://apt.postgresql.org/pub/repos/apt trixie-pgdg InRelease [241 kB]
+Get:4 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+Get:5 http://deb.debian.org/debian trixie/main amd64 Packages [9678 kB]
+Get:6 https://apt.postgresql.org/pub/repos/apt trixie-pgdg/main amd64 Packages [856 kB]
+Get:7 http://deb.debian.org/debian trixie/main Translation-en [6486 kB]
+Get:8 http://deb.debian.org/debian trixie/contrib amd64 Packages [53.9 kB]
+Get:9 http://deb.debian.org/debian-security trixie-security/main amd64 Packages [262 kB]
+Get:10 http://deb.debian.org/debian-security trixie-security/main Translation-en [160 kB]
+Get:11 http://deb.debian.org/debian-security trixie-security/contrib amd64 Packages [3148 B]
+Get:12 http://deb.debian.org/debian-security trixie-security/contrib Translation-en [2564 B]
+Fetched 18.0 MB in 2s (9923 kB/s)
+Reading package lists...
