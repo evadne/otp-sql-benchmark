@@ -1,6 +1,8 @@
 # Empty SQL transactions on the BEAM
 
 Reproduce a 190,000 transactions/s question with explicit completion semantics.
+The 10,000-transaction server-log audit is a separate correctness check, not
+the throughput workload. Performance trials stop by elapsed time, not count.
 See [REPORT.md](REPORT.md) for measured results and the
 [native-versus-Docker comparison](results/native-comparison.md). Dependencies are pinned in `mix.lock`.
 The default PostgreSQL setup is native; Docker is optional historical reproduction only.
@@ -39,7 +41,9 @@ an ordering fence, but does not retroactively provide per-transaction error hand
 - Each worker checks monotonic time each transaction, keeps a private count,
   verifies the expected return, and reports once. No central counter, latency
   histogram or per-operation logging is on the hot path.
-- Five-second measurement windows, three repetitions in a fixed shuffled order.
+- The retained baseline matrix used five-second measurement windows. The sustained
+  profile uses at least 60 seconds after ten seconds of warmup, with three
+  repetitions in a fixed shuffled order.
   In-flight operations and the final drain can overrun the deadline: **their full
   time is included**. API and drained rates are retained separately. Warmup SQL
   queues are fenced before the measurement barrier.
@@ -101,10 +105,49 @@ Compare a complete native rerun with the original Docker baseline using
 runtime metadata, and writes medians, changes and observed repeat ranges to
 `results/another-comparison.csv` and `.md`.
 
+### Sustained throughput (recommended)
+
+With the native server running, execute:
+
+```sh
+python3 scripts/steady.py steady-60s
+```
+
+This runs the six headline transaction paths plus the no-I/O control at ten
+schedulers and forty callers, with forty connections except sql and the no-I/O
+control (ten each). Seven five-second pilots estimate the transaction volume;
+then each configuration receives three fresh-VM trials with ten-second warmup
+and a **60-second minimum measurement window**. Override `--seconds` with a
+larger multiple of ten. The runner refuses durations below 60 seconds. At
+190K TPS, one minute corresponds to about 11.4 million transactions.
+
+The pilot's throughput times the requested duration is an expected count,
+never a stopping threshold. Actual transaction count and actual elapsed time
+are retained for every trial. A slower or faster trial still runs for the full
+duration, and in-flight operations and final fences extend the denominator.
+This avoids a calibrated fixed count finishing too soon when throughput rises.
+
+Six ten-second windows describe traffic over time without reconnecting,
+repeating warmup, or inserting fences between windows. They reuse the original
+per-transaction loop. An operation crossing a boundary belongs to the window
+in which it started; counts are published only after completion and the final
+fence. Window rates describe client API operations by start time, not exact
+server commit times (particularly for sql). Full-run drained TPS remains the
+headline metric. Per-worker counts and latest API-finish time are also retained
+for each window so a delayed operation cannot be mistaken for prompt service.
+
+`plan.json` pins duration, warmup, sources and the shuffled job order;
+`attempts.jsonl` retains pilots, successful measurements and failures. Each
+attempt has its own log. `--resume` validates the plan and skips already
+recorded attempts, including failures; it never silently retries a failure.
+No fixed-count audit or short pilot qualifies as a 60-second measurement.
+The legacy `matrix.py`/`qualify.sh` commands above reproduce the original short
+scheduler and connection sweeps; their five-second results remain labelled.
+
 For a single longer case:
 
 ```sh
-BENCH_MODE=postgrex WORKERS=40 POOL_SIZE=10 SECONDS_PER_RUN=30 REPEATS=5 mix run run.exs
+BENCH_MODE=postgrex WORKERS=40 POOL_SIZE=40 WARMUP_SECONDS=10 SECONDS_PER_RUN=60 WINDOW_SECONDS=10 REPEATS=3 mix run run.exs
 ```
 
 Keep held connections at least as numerous as workers for `postgrex_held`.

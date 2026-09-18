@@ -42,10 +42,13 @@ defmodule BeamSqlBench do
   def run do
     mode = System.fetch_env!("BENCH_MODE")
     workers = int("WORKERS", 10)
-    seconds = int("SECONDS_PER_RUN", 10)
-    warmup = int("WARMUP_SECONDS", 2)
+    seconds = int("SECONDS_PER_RUN", 60)
+    warmup = int("WARMUP_SECONDS", 10)
+    window = int("WINDOW_SECONDS", 0)
     repeats = int("REPEATS", 3)
     pool_size = int("POOL_SIZE", :erlang.system_info(:schedulers_online))
+    true = seconds > 0 and warmup >= 0 and window >= 0
+    true = window == 0 or rem(seconds, window) == 0
     {shared, stop} = setup(mode, pool_size)
 
     metadata = %{
@@ -53,6 +56,8 @@ defmodule BeamSqlBench do
       workers: workers,
       pool_size: if(mode in ["epgsql", "epgsql_batch"], do: workers, else: pool_size),
       seconds: seconds,
+      warmup_seconds: warmup,
+      window_seconds: window,
       schedulers: :erlang.system_info(:schedulers),
       schedulers_online: :erlang.system_info(:schedulers_online),
       dirty_cpu_schedulers: :erlang.system_info(:dirty_cpu_schedulers_online),
@@ -71,7 +76,7 @@ defmodule BeamSqlBench do
 
     try do
       for repeat <- 1..repeats do
-        result = measure(mode, shared, workers, warmup, seconds)
+        result = measure(mode, shared, workers, warmup, seconds, window)
         IO.puts(Jason.encode!(Map.merge(metadata, Map.put(result, :repeat, repeat))))
       end
     after
@@ -122,7 +127,7 @@ defmodule BeamSqlBench do
 
   defp setup(mode, _) when mode in ["epgsql", "epgsql_batch"], do: {nil, fn -> :ok end}
 
-  defp measure(mode, shared, workers, warmup, seconds) do
+  defp measure(mode, shared, workers, warmup, seconds, window) do
     parent = self()
 
     tasks =
@@ -136,9 +141,12 @@ defmodule BeamSqlBench do
             receive do
               {:go, start, deadline} ->
                 wait_until(start)
-                {count, finished} = loop(op, deadline, 0)
+
+                {count, finished, windows} =
+                  timed_windows(op, start, deadline, window * 1_000_000_000)
+
                 :ok = drain.()
-                %{count: count, api_finished: finished, finished: now()}
+                %{count: count, api_finished: finished, finished: now(), windows: windows}
             after
               60_000 -> raise "start barrier timed out"
             end
@@ -175,9 +183,49 @@ defmodule BeamSqlBench do
         (Enum.max(Enum.map(results, & &1.finished)) -
            Enum.max(Enum.map(results, & &1.api_finished))) / 1.0e9,
       worker_counts: Enum.map(results, & &1.count),
+      windows:
+        results
+        |> Enum.map(& &1.windows)
+        |> Enum.zip()
+        |> Enum.with_index()
+        |> Enum.map(fn {entries, index} ->
+          entries = Tuple.to_list(entries)
+          counts = Enum.map(entries, & &1.count)
+
+          %{
+            start_seconds: index * window,
+            end_seconds: (index + 1) * window,
+            transactions: Enum.sum(counts),
+            api_started_tps: Enum.sum(counts) / window,
+            worker_counts: counts,
+            last_api_finished_seconds:
+              (Enum.max(Enum.map(entries, & &1.finished)) - start) / 1.0e9
+          }
+        end),
       beam_runtime_ms: runtime_after - runtime_before,
       reductions_per_transaction: (reductions_after - reductions_before) / max(count, 1)
     }
+  end
+
+  # Keep the original per-transaction loop. Window boundaries neither reconnect
+  # nor drain: an operation crossing a boundary belongs to its start window.
+  # All window counts are reported only after every operation and final fence.
+  @doc false
+  def timed_windows(op, _start, deadline, 0) do
+    {count, finished} = loop(op, deadline, 0)
+    {count, finished, []}
+  end
+
+  def timed_windows(op, start, deadline, interval) when interval > 0 and deadline > start do
+    true = rem(deadline - start, interval) == 0
+
+    {windows, finished} =
+      Enum.map_reduce(1..div(deadline - start, interval), start, fn index, _ ->
+        {count, finished} = loop(op, start + index * interval, 0)
+        {%{count: count, finished: finished}, finished}
+      end)
+
+    {Enum.sum(Enum.map(windows, & &1.count)), finished, windows}
   end
 
   # Check time once per transaction. Do not sample latency or touch a shared counter.
