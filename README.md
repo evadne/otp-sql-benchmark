@@ -36,8 +36,8 @@ an ordering fence, but does not retroactively provide per-transaction error hand
 - Same-host TCP loopback, TLS off, PostgreSQL 16.15. `fsync`,
   `synchronous_commit`, and `full_page_writes` stay on. The disposable database
   lives on tmpfs; empty transactions do not test write durability or storage TPS.
-- Fresh VM per cell. Connections, compilation and two-second per-worker warmup
-  are excluded. Workers rendezvous, then receive a common future start/deadline.
+- Fresh VM per cell. Connections, compilation and the profile's per-worker
+  warmup are excluded. Workers rendezvous, then receive a common future start/deadline.
 - Each worker checks monotonic time each transaction, keeps a private count,
   verifies the expected return, and reports once. No central counter, latency
   histogram or per-operation logging is on the hot path.

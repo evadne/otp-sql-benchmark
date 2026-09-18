@@ -23,5 +23,15 @@ See [REPORT.md](REPORT.md) for findings and [README.md](README.md) for reproduct
 After the initial snapshot, PostgreSQL was installed directly in codex-test-2
 and the matrix repeated. `results/native-*` retains this separate evidence,
 including one unsuccessful attempt and its explicit retry. The report now leads
-with the native comparison; the original Docker evidence, timed Elixir source
-and dependency pins remain byte-for-byte unchanged from the initial commit.
+with the native comparison; the original Docker evidence was preserved. Timed Elixir source and dependency
+pins were byte-for-byte unchanged from the initial commit through `eb2912f`.
+
+## Sustained measurements
+
+The subsequent minute-long profile adds ten-second reporting windows around
+the original per-transaction loop and records warmup/window metadata. The loop
+and library operations themselves are unchanged. Defaults for direct runs are
+now 60 seconds of measurement and ten seconds of warmup; the explicitly timed
+legacy matrix still reproduces the five-second baseline. Dependency pins and
+all historical raw results remain unchanged. Pilot estimates do not impose a
+transaction-count limit on sustained trials.
