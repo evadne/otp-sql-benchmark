@@ -1,0 +1,5 @@
+
+14:23:18.809 [notice] Application sql exited: :stopped
+{"schedulers_online":10,"seconds":5,"timestamp":"2026-09-18T14:23:18.902999Z","mode":"sql","otp":"28","schedulers":10,"elixir":"1.19.5","erts":"16.2.1","workers":1,"errors":null,"deps":{"sql":"0.5.0","postgrex":"0.22.4","ecto_sql":"3.14.0","epgsql":"4.8.0","db_connection":"2.10.2","ecto":"3.14.2"},"api_tps":87697.29644703235,"beam_runtime_ms":1548,"drain_seconds":0.006555973,"elapsed_seconds":5.006561877,"reductions_per_transaction":124.80955421711477,"tps":87582.45893542164,"transactions":438487,"worker_counts":[438487],"cpu_affinity":"Cpus_allowed_list:\t32-39,224-231","dirty_cpu_schedulers":2,"pg_host":"127.0.0.1","pool_size":10,"repeat":1}
+
+14:23:26.185 [notice] Application sql exited: :stopped

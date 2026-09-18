@@ -1,0 +1,14 @@
+
+14:24:49.898 [notice] Application sql exited: :stopped
+
+14:26:18.214 [notice] Application sql exited: :stopped
+** (exit) exited in: Task.await(%Task{mfa: {:erlang, :apply, 2}, owner: #PID<0.95.0>, pid: #PID<0.212.0>, ref: #Reference<0.0.12163.1587158214.1786314753.112536>}, 65000)
+    ** (EXIT) time out
+    (elixir 1.19.5) lib/task.ex:892: Task.await_receive/3
+    (elixir 1.19.5) lib/enum.ex:1688: Enum."-map/2-lists^map/1-1-"/2
+    (elixir 1.19.5) lib/enum.ex:1688: Enum."-map/2-lists^map/1-1-"/2
+    (beam_sql_bench 0.1.0) lib/bench.ex:162: BeamSqlBench.measure/5
+    (beam_sql_bench 0.1.0) lib/bench.ex:74: anonymous fn/7 in BeamSqlBench.run/0
+    (elixir 1.19.5) lib/enum.ex:4539: Enum.map/2
+    (beam_sql_bench 0.1.0) lib/bench.ex:73: BeamSqlBench.run/0
+    run.exs:1: (file)
