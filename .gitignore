@@ -1,0 +1,22 @@
+# Elixir/Mix generated files
+/_build/
+/deps/
+/cover/
+/doc/
+/erl_crash.dump
+/*.ez
+
+# Editor and Python caches
+/.elixir_ls/
+/.elixir-tools/
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# Local scratch work and credentials
+/work/
+/.env
+/.env.*
+!/.env.example
+
+# Retain results/**/*.log and compressed audit logs as benchmark evidence.

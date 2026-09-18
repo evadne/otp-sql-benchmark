@@ -1,0 +1,89 @@
+2026-09-18 13:41:00.536 UTC [235] LOG:  statement: SELECT t.oid, t.typname, t.typsend, t.typreceive, t.typoutput, t.typinput,
+	       coalesce(d.typelem, t.typelem), coalesce(r.rngsubtype, 0), ARRAY (
+	  SELECT a.atttypid
+	  FROM pg_attribute AS a
+	  WHERE a.attrelid = t.typrelid AND a.attnum > 0 AND NOT a.attisdropped
+	  ORDER BY a.attnum
+	)
+	
+	FROM pg_type AS t
+	LEFT JOIN pg_type AS d ON t.typbasetype = d.oid
+	LEFT JOIN pg_range AS r ON r.rngtypid = t.oid OR r.rngmultitypid = t.oid OR (t.typbasetype <> 0 AND r.rngtypid = t.typbasetype)
+	WHERE (t.typrelid = 0)
+	AND (t.typelem = 0 OR NOT EXISTS (SELECT 1 FROM pg_catalog.pg_type s WHERE s.typrelid != 0 AND s.oid = t.typelem))
+	
+	
+2026-09-18 13:41:00.550 UTC [235] LOG:  execute <unnamed>: SELECT 1
+2026-09-18 13:41:00.550 UTC [232] LOG:  statement: BEGIN
+2026-09-18 13:41:00.550 UTC [232] LOG:  statement: COMMIT
+2026-09-18 13:41:00.550 UTC [228] LOG:  statement: BEGIN
+2026-09-18 13:41:00.550 UTC [228] LOG:  statement: COMMIT
+2026-09-18 13:41:00.550 UTC [227] LOG:  statement: BEGIN
+2026-09-18 13:41:00.550 UTC [227] LOG:  statement: COMMIT
+2026-09-18 13:41:00.576 UTC [247] LOG:  execute <unnamed>: SELECT 1
+2026-09-18 13:41:00.576 UTC [248] LOG:  statement: BEGIN
+2026-09-18 13:41:00.576 UTC [248] LOG:  statement: COMMIT
+2026-09-18 13:41:00.576 UTC [248] LOG:  statement: BEGIN
+2026-09-18 13:41:00.576 UTC [248] LOG:  statement: COMMIT
+2026-09-18 13:41:00.576 UTC [248] LOG:  statement: BEGIN
+2026-09-18 13:41:00.576 UTC [248] LOG:  statement: COMMIT
+2026-09-18 13:41:00.614 UTC [268] LOG:  execute <unnamed>: SELECT 1
+2026-09-18 13:41:00.616 UTC [267] LOG:  statement: BEGIN
+2026-09-18 13:41:00.616 UTC [267] LOG:  statement: COMMIT
+2026-09-18 13:41:00.616 UTC [268] LOG:  statement: BEGIN
+2026-09-18 13:41:00.616 UTC [268] LOG:  statement: COMMIT
+2026-09-18 13:41:00.616 UTC [269] LOG:  statement: BEGIN
+2026-09-18 13:41:00.616 UTC [269] LOG:  statement: COMMIT
+2026-09-18 13:41:00.655 UTC [287] LOG:  statement: SELECT typname::text, oid::int4, typarray::int4 FROM pg_type WHERE typname IN ('geometry','hstore') ORDER BY typname
+2026-09-18 13:41:00.656 UTC [287] LOG:  statement: BEGIN
+2026-09-18 13:41:00.656 UTC [287] LOG:  statement: COMMIT
+2026-09-18 13:41:00.656 UTC [287] LOG:  statement: BEGIN
+2026-09-18 13:41:00.656 UTC [287] LOG:  statement: COMMIT
+2026-09-18 13:41:00.656 UTC [287] LOG:  statement: BEGIN
+2026-09-18 13:41:00.656 UTC [287] LOG:  statement: COMMIT
+2026-09-18 13:41:00.659 UTC [288] LOG:  statement: SELECT typname::text, oid::int4, typarray::int4 FROM pg_type WHERE typname IN ('geometry','hstore') ORDER BY typname
+2026-09-18 13:41:00.660 UTC [288] LOG:  statement: BEGIN; COMMIT
+2026-09-18 13:41:00.660 UTC [288] LOG:  statement: BEGIN; COMMIT
+2026-09-18 13:41:00.660 UTC [288] LOG:  statement: BEGIN; COMMIT
+2026-09-18 13:41:00.689 UTC [293] LOG:  execute sql_86964675/p_5682: begin
+2026-09-18 13:41:00.698 UTC [293] LOG:  execute sql_104802920/p_995: savepoint sp_979
+2026-09-18 13:41:00.700 UTC [293] LOG:  execute sql_69598347/p_5762: select
+	    base_type.typname::text as type,
+	    array_agg(derived.oid::int4) as oids
+	from
+	    pg_type base_type
+	join
+	    pg_type derived on derived.typname = base_type.typname and base_type.typtype != 'e'
+	where
+	    base_type.typtype = 'b'
+	group by
+	    base_type.typname
+	order by
+	    base_type.typname
+2026-09-18 13:41:00.701 UTC [293] LOG:  execute sql_31491313/p_1011: release savepoint sp_979
+2026-09-18 13:41:00.702 UTC [293] LOG:  execute sql_70973525/p_1043: savepoint sp_1027
+2026-09-18 13:41:00.706 UTC [293] LOG:  execute sql_55747244/p_2627: select
+	    table_schema::text,
+	    table_name::text,
+	    column_name::text,
+	    data_type::text,
+	    is_nullable = 'YES',
+	    coalesce(character_maximum_length, 0)::int4,
+	    coalesce(numeric_precision, 0)::int4,
+	    coalesce(numeric_scale, 0)::int4,
+	    coalesce(datetime_precision, 0)::int4,
+	    udt_name::text,
+	    is_identity = 'YES',
+	    ordinal_position::int4
+	from information_schema.columns
+	order by table_schema, table_name, ordinal_position
+2026-09-18 13:41:00.751 UTC [293] LOG:  execute sql_33794887/p_1059: release savepoint sp_1027
+2026-09-18 13:41:00.751 UTC [293] LOG:  execute sql_128787544/p_5698: commit
+2026-09-18 13:41:00.754 UTC [296] LOG:  execute sql_86964675/p_9: begin
+2026-09-18 13:41:00.754 UTC [296] LOG:  execute sql_128787544/p_25: commit
+2026-09-18 13:41:00.754 UTC [296] LOG:  execute sql_86964675/p_9: begin
+2026-09-18 13:41:00.754 UTC [296] LOG:  execute sql_128787544/p_25: commit
+2026-09-18 13:41:00.754 UTC [296] LOG:  execute sql_86964675/p_9: begin
+2026-09-18 13:41:00.754 UTC [296] LOG:  execute sql_128787544/p_25: commit
+2026-09-18 13:41:00.754 UTC [296] LOG:  execute sql_50731130/p_57: select 1
+2026-09-18 13:41:00.765 UTC [296] LOG:  unexpected EOF on client connection with an open transaction

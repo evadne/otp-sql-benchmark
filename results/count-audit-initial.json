@@ -1,0 +1,15 @@
+{
+  "api_transactions": 100000,
+  "startup_transactions": 1,
+  "server_commit_delta": 100011,
+  "server_rollback_delta": 6,
+  "before": {
+    "commits": 78015493,
+    "rollbacks": 121
+  },
+  "after": {
+    "commits": 78115504,
+    "rollbacks": 127
+  },
+  "log": "\n13:53:00.712 [notice] Application sql exited: :stopped\nCOUNT_AUDIT sql 100000\n\n13:53:01.273 [notice] Application sql exited: :stopped\n"
+}

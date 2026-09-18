@@ -1,0 +1,489 @@
+codex-test-2
+Linux codex-test-2 6.8.0-137-generic #137-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul 17 20:28:23 UTC 2026 x86_64 GNU/Linux
+Architecture:                            x86_64
+CPU op-mode(s):                          32-bit, 64-bit
+Address sizes:                           52 bits physical, 57 bits virtual
+Byte Order:                              Little Endian
+CPU(s):                                  384
+On-line CPU(s) list:                     32-39,224-231
+Off-line CPU(s) list:                    0-31,40-223,232-383
+Vendor ID:                               AuthenticAMD
+Model name:                              AMD EPYC 9684X 96-Core Processor
+CPU family:                              25
+Model:                                   17
+Thread(s) per core:                      2
+Core(s) per socket:                      96
+Socket(s):                               2
+Stepping:                                2
+Frequency boost:                         enabled
+CPU(s) scaling MHz:                      41%
+CPU max MHz:                             3716.8860
+CPU min MHz:                             1500.0000
+BogoMIPS:                                5099.72
+Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd amd_ppin cppc amd_ibpb_ret arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq la57 rdpid overflow_recov succor smca fsrm flush_l1d debug_swap ibpb_exit_to_user
+Virtualization:                          AMD-V
+L1d cache:                               6 MiB (192 instances)
+L1i cache:                               6 MiB (192 instances)
+L2 cache:                                192 MiB (192 instances)
+L3 cache:                                2.3 GiB (24 instances)
+NUMA node(s):                            24
+NUMA node0 CPU(s):                       0-7,192-199
+NUMA node1 CPU(s):                       8-15,200-207
+NUMA node2 CPU(s):                       16-23,208-215
+NUMA node3 CPU(s):                       24-31,216-223
+NUMA node4 CPU(s):                       32-39,224-231
+NUMA node5 CPU(s):                       40-47,232-239
+NUMA node6 CPU(s):                       48-55,240-247
+NUMA node7 CPU(s):                       56-63,248-255
+NUMA node8 CPU(s):                       64-71,256-263
+NUMA node9 CPU(s):                       72-79,264-271
+NUMA node10 CPU(s):                      80-87,272-279
+NUMA node11 CPU(s):                      88-95,280-287
+NUMA node12 CPU(s):                      96-103,288-295
+NUMA node13 CPU(s):                      104-111,296-303
+NUMA node14 CPU(s):                      112-119,304-311
+NUMA node15 CPU(s):                      120-127,312-319
+NUMA node16 CPU(s):                      128-135,320-327
+NUMA node17 CPU(s):                      136-143,328-335
+NUMA node18 CPU(s):                      144-151,336-343
+NUMA node19 CPU(s):                      152-159,344-351
+NUMA node20 CPU(s):                      160-167,352-359
+NUMA node21 CPU(s):                      168-175,360-367
+NUMA node22 CPU(s):                      176-183,368-375
+NUMA node23 CPU(s):                      184-191,376-383
+Vulnerability Gather data sampling:      Not affected
+Vulnerability Indirect target selection: Not affected
+Vulnerability Itlb multihit:             Not affected
+Vulnerability L1tf:                      Not affected
+Vulnerability Mds:                       Not affected
+Vulnerability Meltdown:                  Not affected
+Vulnerability Mmio stale data:           Not affected
+Vulnerability Reg file data sampling:    Not affected
+Vulnerability Retbleed:                  Not affected
+Vulnerability Spec rstack overflow:      Mitigation; Safe RET
+Vulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; STIBP always-on; PBRSB-eIBRS Not affected; BHI Not affected
+Vulnerability Srbds:                     Not affected
+Vulnerability Tsa:                       Vulnerable: Clear CPU buffers attempted, no microcode
+Vulnerability Tsx async abort:           Not affected
+Vulnerability Vmscape:                   Mitigation; IBPB before exit to userspace
+Name:	cat
+Umask:	0022
+State:	R (running)
+Tgid:	207697
+Ngid:	0
+Pid:	207697
+PPid:	207692
+TracerPid:	0
+Uid:	0	0	0	0
+Gid:	0	0	0	0
+FDSize:	256
+Groups:	0 
+NStgid:	207697
+NSpid:	207697
+NSpgid:	207591
+NSsid:	207591
+Kthread:	0
+VmPeak:	    6528 kB
+VmSize:	    6528 kB
+VmLck:	       0 kB
+VmPin:	       0 kB
+VmHWM:	    1340 kB
+VmRSS:	    1340 kB
+RssAnon:	     116 kB
+RssFile:	    1224 kB
+RssShmem:	       0 kB
+VmData:	     744 kB
+VmStk:	     132 kB
+VmExe:	      24 kB
+VmLib:	    1588 kB
+VmPTE:	      56 kB
+VmSwap:	       0 kB
+HugetlbPages:	       0 kB
+CoreDumping:	0
+THP_enabled:	1
+untag_mask:	0xffffffffffffffff
+Threads:	1
+SigQ:	1/6189517
+SigPnd:	0000000000000000
+ShdPnd:	0000000000000000
+SigBlk:	0000000000000000
+SigIgn:	0000000000000000
+SigCgt:	0000000000000000
+CapInh:	0000000000000000
+CapPrm:	000001ffffffffff
+CapEff:	000001ffffffffff
+CapBnd:	000001ffffffffff
+CapAmb:	0000000000000000
+NoNewPrivs:	0
+Seccomp:	2
+Seccomp_filters:	1
+Speculation_Store_Bypass:	thread vulnerable
+SpeculationIndirectBranch:	conditional enabled
+Cpus_allowed:	00000000,00000000,00000000,00000000,000000ff,00000000,00000000,00000000,00000000,00000000,000000ff,00000000
+Cpus_allowed_list:	32-39,224-231
+Mems_allowed:	00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00ffffff
+Mems_allowed_list:	0-23
+voluntary_ctxt_switches:	0
+nonvoluntary_ctxt_switches:	0
+x86_Thread_features:	
+x86_Thread_features_locked:	
+max 100000
+32-39,224-231
+68719476736
+Erlang/OTP 28 [erts-16.2.1] [source] [64-bit] [smp:10:10] [ds:2:2:2] [async-threads:1] [jit:ns]
+
+Elixir 1.19.5 (compiled with Erlang/OTP 28)
+[
+    {
+        "Id": "49b653816c376162934497a3277f2c5c72291b331e8454a81e06ed67eac171b4",
+        "Created": "2026-09-18T13:35:21.76421791Z",
+        "Path": "docker-entrypoint.sh",
+        "Args": [
+            "-p",
+            "55432",
+            "-c",
+            "max_connections=200",
+            "-c",
+            "listen_addresses=127.0.0.1",
+            "-c",
+            "unix_socket_directories=/var/run/postgresql",
+            "-c",
+            "log_statement=none"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 206171,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-09-18T13:35:21.880784449Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:19d88319bea99f9b280d413f53786e1c76cdd275faf1c19d86fc57ef11a9df96",
+        "ResolvConfPath": "/var/lib/docker/containers/49b653816c376162934497a3277f2c5c72291b331e8454a81e06ed67eac171b4/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/49b653816c376162934497a3277f2c5c72291b331e8454a81e06ed67eac171b4/hostname",
+        "HostsPath": "/var/lib/docker/containers/49b653816c376162934497a3277f2c5c72291b331e8454a81e06ed67eac171b4/hosts",
+        "LogPath": "/var/lib/docker/containers/49b653816c376162934497a3277f2c5c72291b331e8454a81e06ed67eac171b4/49b653816c376162934497a3277f2c5c72291b331e8454a81e06ed67eac171b4-json.log",
+        "Name": "/beam-sql-bench-20260918-pg",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "host",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "Tmpfs": {
+                "/var/lib/postgresql/data": "rw,size=2g"
+            },
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": [],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware",
+                "/sys/devices/virtual/powercap"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/4156eac47d5e40b8ccd82d30a042fc478939402d648c678b0756a7435e5f08c5-init/diff:/var/lib/docker/overlay2/77d6d9c2b0c6b8f0a8d5b57171b92a6f125c1f32db547ecbfb7941f83f6f3b91/diff:/var/lib/docker/overlay2/533da1d5df3f84dbd620abbe6c1741cc5adfe52a2af7140a381809bdc67c3aa6/diff:/var/lib/docker/overlay2/a8e005bf3cb5e8d9d9af1f54e6fe6ef82b8a782aac177310ca7c2fb0fe8c2a94/diff:/var/lib/docker/overlay2/2f9a88835b4397c066c6a5c35e9fa9f56d312c0c4f0c97d8e65d83bf9388ca3e/diff:/var/lib/docker/overlay2/5e57c380d99f729ae6a0221fdef34beffab3036ba7752a3b1648289780590741/diff:/var/lib/docker/overlay2/47f95b6e57f952c984f497dfa4364b68fb961896e2df543ae5c4577e70ce9e17/diff:/var/lib/docker/overlay2/2c00b203c976df2e5a0cc67220c1753ef1821385479928c1f5df27beda8e0a30/diff:/var/lib/docker/overlay2/d8bef920d48b63e17dafdc375813cbcab45f75308cfbee254785bae2a00475c4/diff:/var/lib/docker/overlay2/82c084422ac4ad579b56164a3bf8bfb0d23eb0e9356c30c1833fb764e568d8d6/diff:/var/lib/docker/overlay2/9870b8c2ed18ac5d7f40133eebb9da8ce0015a3089e2b41ce768e862e24f1d37/diff:/var/lib/docker/overlay2/5d5349c0b33c200942642e696e7c8c1e288ddb5f1628bb0efa7f0e48e1709322/diff:/var/lib/docker/overlay2/5b3f60c19557c34381b198577a7c811f30b206d682b17ee152e994a48a9ed3f5/diff:/var/lib/docker/overlay2/7768413c60ca63c93e07569437342dbc1e8457c3570b976afe168c862296b743/diff:/var/lib/docker/overlay2/1652fdb4525fa585043cc54df5293888b694385ea662dfd07c53d8ef7034ccff/diff",
+                "MergedDir": "/var/lib/docker/overlay2/4156eac47d5e40b8ccd82d30a042fc478939402d648c678b0756a7435e5f08c5/merged",
+                "UpperDir": "/var/lib/docker/overlay2/4156eac47d5e40b8ccd82d30a042fc478939402d648c678b0756a7435e5f08c5/diff",
+                "WorkDir": "/var/lib/docker/overlay2/4156eac47d5e40b8ccd82d30a042fc478939402d648c678b0756a7435e5f08c5/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "codex-test-2",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "5432/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "POSTGRES_HOST_AUTH_METHOD=trust",
+                "POSTGRES_DB=beam_bench",
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/postgresql/16/bin",
+                "GOSU_VERSION=1.19",
+                "LANG=en_US.utf8",
+                "PG_MAJOR=16",
+                "PG_VERSION=16.15-1.pgdg13+2",
+                "PGDATA=/var/lib/postgresql/data"
+            ],
+            "Cmd": [
+                "-p",
+                "55432",
+                "-c",
+                "max_connections=200",
+                "-c",
+                "listen_addresses=127.0.0.1",
+                "-c",
+                "unix_socket_directories=/var/run/postgresql",
+                "-c",
+                "log_statement=none"
+            ],
+            "Image": "postgres:16",
+            "Volumes": {
+                "/var/lib/postgresql/data": {}
+            },
+            "WorkingDir": "",
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "OnBuild": null,
+            "Labels": {
+                "purpose": "beam-sql-bench-20260918"
+            },
+            "StopSignal": "SIGINT"
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "e3890974e105a224e0b67cb5dc87592516f5636089ae755e98a44d76947e17e1",
+            "SandboxKey": "/var/run/docker/netns/default",
+            "Ports": {},
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "",
+            "Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "MacAddress": "",
+            "Networks": {
+                "host": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "MacAddress": "",
+                    "NetworkID": "67a4341f6600e8a5486dd701a5a3e7895918ee7d5e7b38d334c97eee0f3fee0e",
+                    "EndpointID": "6ab0a1e0821e4832d04e94fe9c8c4b50c6d192b0e2e9a8ca34294853b3701be2",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "IPPrefixLen": 0,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DriverOpts": null,
+                    "DNSNames": null
+                }
+            }
+        }
+    }
+]
+[
+    {
+        "Id": "sha256:19d88319bea99f9b280d413f53786e1c76cdd275faf1c19d86fc57ef11a9df96",
+        "RepoTags": [
+            "postgres:16"
+        ],
+        "RepoDigests": [
+            "postgres@sha256:e17e86066e5ef83e0952a9347f5c792b7ece00972e2aa787a6986f471b3dd3d5"
+        ],
+        "Parent": "",
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-08-13T19:16:08.705640299Z",
+        "DockerVersion": "",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "5432/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/postgresql/16/bin",
+                "GOSU_VERSION=1.19",
+                "LANG=en_US.utf8",
+                "PG_MAJOR=16",
+                "PG_VERSION=16.15-1.pgdg13+2",
+                "PGDATA=/var/lib/postgresql/data"
+            ],
+            "Cmd": [
+                "postgres"
+            ],
+            "Image": "",
+            "Volumes": {
+                "/var/lib/postgresql/data": {}
+            },
+            "WorkingDir": "",
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "OnBuild": null,
+            "Labels": null,
+            "StopSignal": "SIGINT"
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 451085451,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/533da1d5df3f84dbd620abbe6c1741cc5adfe52a2af7140a381809bdc67c3aa6/diff:/var/lib/docker/overlay2/a8e005bf3cb5e8d9d9af1f54e6fe6ef82b8a782aac177310ca7c2fb0fe8c2a94/diff:/var/lib/docker/overlay2/2f9a88835b4397c066c6a5c35e9fa9f56d312c0c4f0c97d8e65d83bf9388ca3e/diff:/var/lib/docker/overlay2/5e57c380d99f729ae6a0221fdef34beffab3036ba7752a3b1648289780590741/diff:/var/lib/docker/overlay2/47f95b6e57f952c984f497dfa4364b68fb961896e2df543ae5c4577e70ce9e17/diff:/var/lib/docker/overlay2/2c00b203c976df2e5a0cc67220c1753ef1821385479928c1f5df27beda8e0a30/diff:/var/lib/docker/overlay2/d8bef920d48b63e17dafdc375813cbcab45f75308cfbee254785bae2a00475c4/diff:/var/lib/docker/overlay2/82c084422ac4ad579b56164a3bf8bfb0d23eb0e9356c30c1833fb764e568d8d6/diff:/var/lib/docker/overlay2/9870b8c2ed18ac5d7f40133eebb9da8ce0015a3089e2b41ce768e862e24f1d37/diff:/var/lib/docker/overlay2/5d5349c0b33c200942642e696e7c8c1e288ddb5f1628bb0efa7f0e48e1709322/diff:/var/lib/docker/overlay2/5b3f60c19557c34381b198577a7c811f30b206d682b17ee152e994a48a9ed3f5/diff:/var/lib/docker/overlay2/7768413c60ca63c93e07569437342dbc1e8457c3570b976afe168c862296b743/diff:/var/lib/docker/overlay2/1652fdb4525fa585043cc54df5293888b694385ea662dfd07c53d8ef7034ccff/diff",
+                "MergedDir": "/var/lib/docker/overlay2/77d6d9c2b0c6b8f0a8d5b57171b92a6f125c1f32db547ecbfb7941f83f6f3b91/merged",
+                "UpperDir": "/var/lib/docker/overlay2/77d6d9c2b0c6b8f0a8d5b57171b92a6f125c1f32db547ecbfb7941f83f6f3b91/diff",
+                "WorkDir": "/var/lib/docker/overlay2/77d6d9c2b0c6b8f0a8d5b57171b92a6f125c1f32db547ecbfb7941f83f6f3b91/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:6f94328331290cbd81edab450664d42da7b64c191416c9346cd5d28c84f76035",
+                "sha256:73a56b7b973fc86ede29bd2c7fdc6e26dbd5555efcc362c69254f362846d7103",
+                "sha256:e0f359e32401d3d946a8034961978c2a15e949f37dfdc65f69ae6668b141f7fe",
+                "sha256:efc4c81cb0ef62c08753d9afe487bf4d54535cf776b7b35691fef0ad14a49d8d",
+                "sha256:ff8f691121eb73a73308716af733efe2c06f55b50862122d436469b44276a4bc",
+                "sha256:d1d7db311d60279df560e9e694fb042b4a137f546f27dacd111ef41b3d53dcfe",
+                "sha256:3e3b77db170f808653773984a2757aab38b3c9751d649d4a8e49064c0b93f9d0",
+                "sha256:b2bd30210c174b4a66ce649ae67bdcca8cf813554464af6f765c1dd16cc2d1b1",
+                "sha256:8368b0f8f1ee3a28f50f0db5f8f887a98e0a47438eb9936957dd3290afe27f02",
+                "sha256:6e02750fb937a8001785944a66fde8c6dc2e97e3fca5dac734bb85475ae6cca3",
+                "sha256:bb3847ee4525963975f6c0ee63cb002fa97bb30227546bf2e813d8e86d013500",
+                "sha256:8a4555d976620b8182b3eed8b8d8e667bfe3fb2cc32290494b50ddaaf473bd59",
+                "sha256:4ba1293deb61ef5c3478d7c51959d040eeb6ede5994693e413e911ad39d19928",
+                "sha256:714925750fe04df880da7ff19021a042fe7acd76fbd647cd252da53d699714b0"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "0001-01-01T00:00:00Z"
+        }
+    }
+]
+                                                       version                                                        
+----------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+(1 row)
+
+ fsync 
+-------
+ on
+(1 row)
+
+ synchronous_commit 
+--------------------
+ on
+(1 row)
+
+ full_page_writes 
+------------------
+ on
+(1 row)
+
+ max_connections 
+-----------------
+ 200
+(1 row)
+
+ log_statement 
+---------------
+ none
+(1 row)
+
