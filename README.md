@@ -86,8 +86,21 @@ python3 scripts/count_audit.py another-audit
 python3 scripts/summarise.py another-matrix another-pool-sweep another-controls
 ```
 
-Each run directory must be new. Keep the raw JSONL and per-cell logs. For a
-single longer case:
+Each run directory must be new. Keep the raw JSONL and per-cell logs. After an
+interrupted or failed matrix, explicitly resume with, for example,
+`python3 scripts/matrix.py another-matrix --resume`. This validates the retained
+plan and completed prefix, then continues at the first missing measurement.
+Any existing log for that cell is preserved as `.previous-N.log`; retries are
+manual, and unsuccessful attempts must be reported alongside successful rates.
+The native rerun retained one such SQL timeout. A retry is not evidence that
+the failed attempt succeeded.
+
+Compare a complete native rerun with the original Docker baseline using
+`python3 scripts/compare.py another`. This validates matching configurations and
+runtime metadata, and writes medians, changes and observed repeat ranges to
+`results/another-comparison.csv` and `.md`.
+
+For a single longer case:
 
 ```sh
 BENCH_MODE=postgrex WORKERS=40 POOL_SIZE=10 SECONDS_PER_RUN=30 REPEATS=5 mix run run.exs

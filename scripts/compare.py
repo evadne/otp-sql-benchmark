@@ -31,9 +31,12 @@ def fairness(row):
     return sum(counts) ** 2 / (len(counts) * sum(c*c for c in counts))
 
 comparisons = []
+unsuccessful_attempts = []
 for suite in ("matrix", "pool-sweep", "controls"):
     baseline = load(suite)
     native = load(f"{prefix}-{suite}")
+    retained = sorted((root / "results" / f"{prefix}-{suite}").glob("*.previous-*.log"))
+    unsuccessful_attempts.extend(path.relative_to(root / "results") for path in retained)
     assert baseline.keys() == native.keys(), suite
     for key in sorted(baseline):
         previous, current = baseline[key], native[key]
@@ -50,6 +53,8 @@ for suite in ("matrix", "pool-sweep", "controls"):
         elif max(new) < min(old):
             overlap = "native below"
         mode, schedulers, workers, connections = key
+        sequences = {row["sequence"] for row in current}
+        failures = sum(int(path.name.split("-", 1)[0]) in sequences for path in retained)
         comparisons.append({"suite": suite, "mode": mode, "schedulers": schedulers,
             "workers": workers, "connections": connections,
             "docker_median_tps": old_median, "native_median_tps": new_median,
@@ -57,6 +62,7 @@ for suite in ("matrix", "pool-sweep", "controls"):
             "docker_min_tps": min(old), "docker_max_tps": max(old),
             "native_min_tps": min(new), "native_max_tps": max(new),
             "repeat_ranges": overlap,
+            "native_unsuccessful_attempts": failures,
             "docker_min_fairness": min(map(fairness, previous)),
             "native_min_fairness": min(map(fairness, current)),
             "native_min_worker_completions": min(min(r["worker_counts"]) for r in current)})
@@ -68,6 +74,11 @@ with (root / "results" / f"{prefix}-comparison.csv").open("w") as stream:
 lines = ["# Native PostgreSQL versus the retained Docker baseline", "",
          "Three repeats per configuration. Changes compare medians. Range labels compare",
          "observed repeats only; they are not confidence intervals or causal estimates.", ""]
+if unsuccessful_attempts:
+    lines += [f"**{len(unsuccessful_attempts)} unsuccessful native attempt(s) were retained and retried.**",
+              "Medians and ranges describe successful measurements only. See the report for the failure context.", ""]
+    lines += [f"- [Retained attempt]({path})" for path in unsuccessful_attempts]
+    lines.append("")
 for suite in ("matrix", "pool-sweep", "controls"):
     lines += [f"## {suite}", "",
               "| Mode | Schedulers | Callers | Connections | Docker/s | Native/s | Change | Repeat ranges |",
