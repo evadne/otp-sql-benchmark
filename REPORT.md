@@ -1,9 +1,11 @@
 # BEAM empty transaction results — 18 September 2026
 
-**Acknowledged `BEGIN; COMMIT` sustained 257,428 transactions/s over full-minute
-runs with ten BEAM schedulers.** Three repeats processed about 15.45 million
-transactions each; every repeat exceeded 190K/s. The tested ordinary callback
-APIs remained below 190K/s. PostgreSQL ran natively, without Docker.
+**epgsql's acknowledged `BEGIN; COMMIT` sustained 257,428 transactions/s over
+full-minute runs with ten BEAM schedulers.** Three repeats processed
+15.45–15.51 million transactions each; every repeat exceeded 190K/s. This sends
+both statements in one request and provides no callback between them. The
+tested ordinary callback APIs remained below 190K/s. PostgreSQL ran natively,
+without Docker.
 
 The **10,000-transaction figure belongs only to the separate correctness
 audit**. Earlier throughput measurements ran for five seconds and were never
