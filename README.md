@@ -83,16 +83,26 @@ mix compile --warnings-as-errors
 mix format --check-formatted
 mix run -e 'BeamSqlBench.audit()'
 bash scripts/environment.sh > results/another-environment.txt
+python3 scripts/steady.py another
+python3 scripts/summarise_steady.py another
+python3 scripts/completion_probe.py another-audit
+python3 scripts/count_audit.py another-audit
+```
+
+Each run directory must be new. Keep the raw JSONL and per-cell logs.
+`python3 scripts/steady.py another --resume` continues unrecorded sustained
+attempts without retrying recorded failures.
+
+To reproduce the original short scheduler and connection sweeps instead:
+
+```sh
 python3 scripts/matrix.py another-matrix
 python3 scripts/matrix.py another-pool-sweep pool
 python3 scripts/matrix.py another-controls controls
-python3 scripts/completion_probe.py another-audit
-python3 scripts/count_audit.py another-audit
 python3 scripts/summarise.py another-matrix another-pool-sweep another-controls
 ```
 
-Each run directory must be new. Keep the raw JSONL and per-cell logs. After an
-interrupted or failed matrix, explicitly resume with, for example,
+After an interrupted or failed legacy matrix, explicitly resume with, for example,
 `python3 scripts/matrix.py another-matrix --resume`. This validates the retained
 plan and completed prefix, then continues at the first missing measurement.
 Any existing log for that cell is preserved as `.previous-N.log`; retries are
@@ -111,6 +121,7 @@ With the native server running, execute:
 
 ```sh
 python3 scripts/steady.py steady-60s
+python3 scripts/summarise_steady.py steady-60s
 ```
 
 This runs the six headline transaction paths plus the no-I/O control at ten
