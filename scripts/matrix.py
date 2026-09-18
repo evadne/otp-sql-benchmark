@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run each cell in a fresh VM, serially, with reproducible shuffled order."""
+"""Reproduce the historical five-second sweeps; use steady.py for sustained trials."""
 import json
 import os
 from pathlib import Path

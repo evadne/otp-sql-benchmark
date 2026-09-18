@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Historical short-sweep qualification; steady.py runs the sustained profile.
 set -euo pipefail
 run_id="${1:-$(date -u +%Y%m%dT%H%M%SZ)}"
 mix format
